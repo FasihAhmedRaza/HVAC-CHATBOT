@@ -24,7 +24,7 @@ app.post('/webhook', async (req, res) => {
     
     try {
       await client.create({ 
-        timestamp: new Date().toISOString(),
+        // timestamp: new Date().toISOString(),
         customer_type: "New Interaction",
         query: "Welcome Intent"
       });
@@ -76,7 +76,7 @@ app.post('/webhook', async (req, res) => {
     // Log interaction
     try {
       await client.create({ 
-        timestamp: new Date().toISOString(),
+        // timestamp: new Date().toISOString(),
         customer_type: "Service Selection",
         query: agent.query
       });
