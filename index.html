@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="HVAC"
+  chat-icon="https://firebasestorage.googleapis.com/v0/b/logo-d7556.appspot.com/o/Untitled.png?alt=media&token=01f457f8-dd33-4702-a265-694f52b2b68d"
+  agent-id="a451c8b6-c163-4912-96b5-96975ecf37df"
+  language-code="en"
+></df-messenger>
+<style>
+  df-messenger {
+       --df-messenger-bot-message:#37517E;
+       --df-messenger-button-titlebar-color:#37517E;
+       /* --df-messenger-titlebar-color:#37ac47; */
+       /* --df-messenger-button-titlebar-font-color:bold #b42020; */
+       --df-messenger-chat-background-color:#ffffff;
+       --df-messenger-font-color: rgb(255, 255, 255);
+       --df-messenger-send-icon: #37517E;
+       --df-messenger-user-message:#6e87b1;
+       --df-messenger-input-box-color: #b4c2da;
+       --df-messenger-user-message-color: #37517E;
+       font-family:sans-serif;
+
+     }
+       /* Update the chat title to be bold */
+       df-messenger::part(chat-title) {
+            font-weight: bold;
+            color: #b42020;
+        }
+     /* #EB3F2E  , #37517E */
+ </style>
+</body>
+</html>
