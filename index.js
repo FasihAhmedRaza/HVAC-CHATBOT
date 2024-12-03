@@ -64,6 +64,51 @@ app.post('/webhook', async (req, res) => {
     agent.add(new Payload(agent.UNSPECIFIED, richContentPayload, { rawPayload: true, sendAsMessage: true }));
   }
 
+   // YES Intent (restored)
+   async function Yes(agent) {
+    console.log(`intent => yes`);
+    
+    try {
+      await client.create({ 
+        // timestamp: new Date().toISOString(),
+        customer_type: "New Interaction",
+        query: "Welcome Intent"
+      });
+    } catch (error) {
+      console.error('Error logging to sheet:', error);
+    }
+    
+    agent.add("Hello, I’m HVAC Assist. What product can I help you with? ");
+    
+    const richContentPayload = {
+      "richContent": [
+        [
+          {
+            "type": "chips",
+            "options": [
+              {
+                "text": "Tankless"
+              },
+              {
+                "text": "Furnace"
+              },
+              {
+                "text": "Heat Pump"
+              },
+              {
+                "text": "A/C"
+              },
+              {
+                "text": "Repairs/maintenance"
+              }
+            ]
+          }
+        ]
+      ]
+    };
+
+    agent.add(new Payload(agent.UNSPECIFIED, richContentPayload, { rawPayload: true, sendAsMessage: true }));
+  }
   // Intent for initial service selection
   async function serviceSelectionIntent(agent) {
     console.log(`intent => serviceSelection`);
@@ -203,6 +248,7 @@ async function saveInformationIntent(agent) {
   // Intent Map
   let intentMap = new Map();
   intentMap.set('Default Welcome Intent', hi);
+  intentMap.set('yes', Yes);
   intentMap.set('Service Selection Intent', serviceSelectionIntent);
   intentMap.set('Property Type Intent', propertyTypeIntent);
   intentMap.set('Collect Name Intent', collectNameIntent);
