@@ -231,7 +231,7 @@ async function saveInformationIntent(agent) {
               "type": "chips",
               "options": [
                 {
-                  "text": "Yes"
+                  "text": "Is there anything else I can assist you with today?"
                 }
               ]
             }
