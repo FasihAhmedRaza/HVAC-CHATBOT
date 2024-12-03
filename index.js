@@ -177,8 +177,24 @@ async function saveInformationIntent(agent) {
       phone: phone,
       timestamp: new Date().toISOString()
     });
-    agent.add(`Thank ${nameContext.parameters.name}. We will be be in touch with you shortly. `);
-    // agent.add(`Thank you! We have received your request for ${nameContext.parameters.selectedService} for a ${nameContext.parameters.selectedPropertyType}. Your reference ID is ${referenceId}. Our team will contact you at ${phone} shortly.`);
+    agent.add(`Thank ${nameContext.parameters.name}. We will be be in touch with you shortly. Is there anything else I can assist you with today? `);
+   // Add a new rich content payload with options
+      const followupPayload = {
+        "richContent": [
+          [
+            {
+              "type": "chips",
+              "options": [
+                {
+                  "text": "Yes"
+                }
+              ]
+            }
+          ]
+        ]
+      };
+
+      agent.add(new Payload(agent.UNSPECIFIED, followupPayload, { rawPayload: true, sendAsMessage: true }));
   } catch (error) {
     console.error('Error saving user data:', error);
     agent.add("I'm sorry, but there was an issue saving your information. Please try again later.");
