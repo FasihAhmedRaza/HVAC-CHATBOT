@@ -32,33 +32,28 @@ app.post('/webhook', async (req, res) => {
       console.error('Error logging to sheet:', error);
     }
     
-    agent.add("How can I help you today?");
+    agent.add("Hello, I’m HVAC Assist. What product can I help you with? ");
     
     const richContentPayload = {
       "richContent": [
         [
           {
-            "type": "image",
-            "rawUrl": "https://firebasestorage.googleapis.com/v0/b/logo-d7556.appspot.com/o/HVACLogo5.svg?alt=media&token=401da99d-1692-437a-a5da-fa43566e4b51", // Replace with your actual logo URL
-            "accessibilityText": "Company Logo"
-          },
-          {
             "type": "chips",
             "options": [
               {
-                "text": "Tankless Quote "
+                "text": "Tankless"
               },
               {
-                "text": "Furnace Quote"
+                "text": "Furnace"
               },
               {
-                "text": "Heat Pump Quote "
+                "text": "Heat Pump"
               },
               {
-                "text": "Air Conditioner Quote"
+                "text": "A/C"
               },
               {
-                "text": "Others"
+                "text": "Repairs/maintenance"
               }
             ]
           }
@@ -93,7 +88,7 @@ app.post('/webhook', async (req, res) => {
     });
 
     // Property type selection
-    agent.add("Sure we can help with that ?");
+    agent.add("What type of property is this for?");
     
     const richContentPayload = {
       "richContent": [
@@ -102,10 +97,10 @@ app.post('/webhook', async (req, res) => {
             "type": "chips",
             "options": [
               {
-                "text": "Is this for a Residential Property"
+                "text": "Residential Property"
               },
               {
-                "text": "Is this for a Commercial Property"
+                "text": "Commercial Property"
               }
             ]
           }
@@ -136,7 +131,7 @@ app.post('/webhook', async (req, res) => {
     });
 
     // Ask for user information
-    agent.add(`Thank you, our ${selectedService} expert can call you shortly to go over the details and prices. Can I please have your name?`);
+    agent.add(`Thank you, our ${selectedService} Consultant will contact you within the next 2-10 minutes to go over the details and pricing. Can I please have your name ?`);
 
   }
 
@@ -182,7 +177,7 @@ async function saveInformationIntent(agent) {
       phone: phone,
       timestamp: new Date().toISOString()
     });
-    agent.add(`Thank ${nameContext.parameters.name} our expert advisor will be in touch with you in 30 min or less to go over the details. `);
+    agent.add(`Thank ${nameContext.parameters.name}. We will be be in touch with you shortly. `);
     // agent.add(`Thank you! We have received your request for ${nameContext.parameters.selectedService} for a ${nameContext.parameters.selectedPropertyType}. Your reference ID is ${referenceId}. Our team will contact you at ${phone} shortly.`);
   } catch (error) {
     console.error('Error saving user data:', error);
